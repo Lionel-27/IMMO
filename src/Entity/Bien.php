@@ -4,9 +4,12 @@ namespace App\Entity;
 
 use App\Repository\BienRepository;
 use Doctrine\ORM\Mapping as ORM;
+//use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=BienRepository::class)
+ * @ORM\HasLifecycleCallbacks()
  */
 class Bien
 {
@@ -56,6 +59,11 @@ class Bien
      * @ORM\Column(type="string", length=12)
      */
     private $type;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class)
+     */
+    private $proprietaire_id;
 
     public function getId(): ?int
     {
@@ -115,9 +123,9 @@ class Bien
         return $this->created_at;
     }
 
-    public function setCreatedAt(\DateTimeInterface $created_at): self
+    public function setCreatedAt(): self
     {
-        $this->created_at = $created_at;
+        $this->created_at = new \Datetime('now', new \DateTimeZone('Europe/Paris'));
 
         return $this;
     }
@@ -127,9 +135,9 @@ class Bien
         return $this->updated_at;
     }
 
-    public function setUpdatedAt(\DateTimeInterface $updated_at): self
+    public function setUpdatedAt(): self
     {
-        $this->updated_at = $updated_at;
+        $this->updated_at = new \Datetime('now', new \DateTimeZone('Europe/Paris'));
 
         return $this;
     }
@@ -154,6 +162,18 @@ class Bien
     public function setType(string $type): self
     {
         $this->type = $type;
+
+        return $this;
+    }
+
+    public function getProprietaireId(): ?User
+    {
+        return $this->proprietaire_id;
+    }
+
+    public function setProprietaireId(?User $proprietaire_id): self
+    {
+        $this->proprietaire_id = $proprietaire_id;
 
         return $this;
     }

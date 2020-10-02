@@ -3,7 +3,11 @@
 {% block title %}Bien index{% endblock %}
 
 {% block body %}
-    <h1>Bien index</h1>
+    <div class="row">
+        <div class="col-sm-12">
+    <h1 class="text-default">Liste des biens</h1>
+    </div>
+        </div>
 
     <table class="table">
         <thead>
@@ -28,8 +32,8 @@
                 <td>{{ bien.prix }}</td>
                 <td>{{ bien.photo }}</td>
                 <td>{{ bien.categorie }}</td>
-                <td>{{ bien.createdAt ? bien.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ bien.updatedAt ? bien.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ bien.createdAt ? bien.createdAt|date('d\m\Y H:i:s') : '' }}</td>
+                <td>{{ bien.updatedAt ? bien.updatedAt|date('d\m\Y H:i:s') : '' }}</td>
                 <td>{{ bien.titre }}</td>
                 <td>{{ bien.type }}</td>
                 <td>
@@ -39,11 +43,13 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="10">no records found</td>
+                <td colspan="10">Pas de biens</td>
             </tr>
         {% endfor %}
         </tbody>
+        
     </table>
 
-    <a href="{{ path('bien_new') }}">Create new</a>
+
+    <a href="{{ path('bien_new') }}">Ajouter un bien</a>
 {% endblock %}

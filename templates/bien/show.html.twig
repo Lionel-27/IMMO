@@ -15,10 +15,7 @@
                 <th>Description</th>
                 <td>{{ bien.description }}</td>
             </tr>
-            <tr>
-                <th>Prix</th>
-                <td>{{ bien.prix }}</td>
-            </tr>
+           
             <tr>
                 <th>Photo</th>
                 <td>{{ bien.photo }}</td>
@@ -29,11 +26,11 @@
             </tr>
             <tr>
                 <th>Created_at</th>
-                <td>{{ bien.createdAt ? bien.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ bien.createdAt ? bien.createdAt|date('d\m\Y H:i:s') : '' }}</td>
             </tr>
             <tr>
                 <th>Updated_at</th>
-                <td>{{ bien.updatedAt ? bien.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ bien.updatedAt ? bien.updatedAt|date('d\m\Y H:i:s') : '' }}</td>
             </tr>
             <tr>
                 <th>Titre</th>
