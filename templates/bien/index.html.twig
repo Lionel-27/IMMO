@@ -16,9 +16,9 @@
         <thead>
             <tr>
                 <th>Id</th>
+                <th>Photo</th>
                 <th>Description</th>
                 <th>Prix</th>
-                <th>Photo</th>
                 <th>Categorie</th>
                 <th>Créer le</th>
                 <th>Mis à jour le</th>
@@ -31,17 +31,17 @@
         {% for bien in biens %}
             <tr>
                 <td>{{ bien.id }}</td>
+                <td><img src="{{asset("uploads/images/"~ bien.photo )}}"></td>
                 <td>{{ bien.description }}</td>
                 <td>{{ bien.prix }}</td>
-                <td>{{ bien.photo }}</td>
                 <td>{{ bien.categorie }}</td>
                 <td>{{ bien.createdAt ? bien.createdAt|date('d/m/Y H:i:s') : '' }}</td>
                 <td>{{ bien.updatedAt ? bien.updatedAt|date('d/m/Y H:i:s') : '' }}</td>
                 <td>{{ bien.titre }}</td>
                 <td>{{ bien.type }}</td>
                 <td>
-                    <a href="{{ path('bien_show', {'id': bien.id}) }}">show</a>
-                    <a href="{{ path('bien_edit', {'id': bien.id}) }}">edit</a>
+                    <a href="{{ path('bien_show', {'id': bien.id}) }}">Afficher</a>
+                    <a href="{{ path('bien_edit', {'id': bien.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
@@ -52,5 +52,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('bien_new') }}">Créer nouveau bien</a>
+     {# <a href="{{ path('bien_new') }}">Créer nouveau bien</a>   #} 
 {% endblock %}

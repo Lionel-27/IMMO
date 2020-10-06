@@ -5,10 +5,15 @@ namespace App\Entity;
 use App\Repository\BienRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 /**
  * @ORM\Entity(repositoryClass=BienRepository::class)
  * @ORM\HasLifecycleCallbacks()
+ * @Vich\Uploadable
+ * @UniqueEntity("titre")
  */
 class Bien
 {
@@ -31,8 +36,18 @@ class Bien
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @var string
      */
     private $photo;
+
+    /**
+     * @Vich\UploadableField(mapping="bien_image",fileNameProperty="photo")
+     * @var File
+     * @Assert\File(
+     *      maxSize="524880",
+     *      mimeTypes={"image/png","image/jpeg","image/jpg"})
+     */
+    private $photoFile;
 
     /**
      * @ORM\Column(type="string", length=10)
@@ -95,17 +110,7 @@ class Bien
         return $this;
     }
 
-    public function getPhoto(): ?string
-    {
-        return $this->photo;
-    }
-
-    public function setPhoto(string $photo): self
-    {
-        $this->photo = $photo;
-
-        return $this;
-    }
+   
 
     public function getCategorie(): ?string
     {
@@ -183,9 +188,42 @@ class Bien
         return $this;
     }
 
+    /**
+     * @param File| UploadedFile $photoFile
+     */
+    public function setPhotoFile(?file $photoFile = null)
+    {
+        $this->photoFile = $photoFile;
+
+        if(null!== $photoFile){
+            $this->updated_at = new \DateTime('now',new \DateTimeZone('Europe/Paris'));
+        }
+        return $this;
+    }
+
+    /**
+     * @return File|null
+     */
+     public function getPhotoFile(): ?File
+    {
+        
+        return $this->photoFile;
+    }
     
 
+     public function getPhoto(): ?string
+    {
+        return $this->photo;
+    }
+
+    public function setPhoto(?string $photo): self
+    {
+        $this->photo = $photo;
+
+        return $this;
+    }
     
+
 }
 
 

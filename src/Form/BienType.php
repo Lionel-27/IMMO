@@ -6,6 +6,7 @@ use App\Entity\Bien;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -18,6 +19,7 @@ class BienType extends AbstractType
     {
         $builder
             //->add('photo',TextType::class,['label'=>'photo','attr'=>['placeholder'=>'photo']])
+            ->add('titre',TextType::class,['label'=>'Titre'])
             ->add('description',TextareaType::class,['label'=>'description','attr'=>['placeholder'=>'...ici votre description..']])
             ->add('prix',IntegerType::class)
            
@@ -25,8 +27,9 @@ class BienType extends AbstractType
                 'choices'=>['Location'=>'Location','Vente'=>'Vente',],])
             //->add('created_at',DateType::class,['widget'=>'single_text'])
             //->add('updated_at',DateType::class,['widget'=>'single_text'])
-            ->add('titre',TextType::class,['label'=>'Titre'])
             ->add('type',ChoiceType::class,['placeholder'=>'Choisir un type','choices'=>['Maison'=>'Maison','Appartement'=>'Appartement',],])
+            ->add('photoFile',FileType::class)
+            
         ;
     }
 
