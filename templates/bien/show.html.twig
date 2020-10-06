@@ -28,18 +28,20 @@
             </tr>
             <tr>
                 <th>Photo</th>
-                <td>{{ bien.photo }}</td>
+                <td>  {% if bien.photo %}
+                <img src="{{asset("uploads/images/"~ bien.photo )}}">
+                 {% endif %}</td>
             </tr>
             <tr>
                 <th>Categorie</th>
                 <td>{{ bien.categorie }}</td>
             </tr>
             <tr>
-                <th>Created_at</th>
+                <th>Ajouté le :</th>
                 <td>{{ bien.createdAt ? bien.createdAt|date('d/m/Y H:i:s') : '' }}</td>
             </tr>
             <tr>
-                <th>Updated_at</th>
+                <th>Modifié le :</th>
                 <td>{{ bien.updatedAt ? bien.updatedAt|date('d/m/Y H:i:s') : '' }}</td>
             </tr>
             <tr>
