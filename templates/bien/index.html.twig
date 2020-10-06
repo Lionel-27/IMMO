@@ -3,8 +3,15 @@
 {% block title %}Bien index{% endblock %}
 
 {% block body %}
-    <h1>Bien index</h1>
-
+    <div class="row mb-4">
+        <div class="col-sm-6">
+    <h1 class="text-default">Bien index</h1>
+         </div>
+         <div class="col-sm-6 text-right">
+            
+    <button class="btn btn-default"><a href="{{ path('bien_new') }}"><i class="fas fa-plus" aria-hidden="true"></i>Ajouter un bien</a></button>
+            </div>
+        </div>
     <table class="table">
         <thead>
             <tr>
@@ -13,8 +20,8 @@
                 <th>Prix</th>
                 <th>Photo</th>
                 <th>Categorie</th>
-                <th>Created_at</th>
-                <th>Updated_at</th>
+                <th>Créer le</th>
+                <th>Mis à jour le</th>
                 <th>Titre</th>
                 <th>Type</th>
                 <th>actions</th>
@@ -28,8 +35,8 @@
                 <td>{{ bien.prix }}</td>
                 <td>{{ bien.photo }}</td>
                 <td>{{ bien.categorie }}</td>
-                <td>{{ bien.createdAt ? bien.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ bien.updatedAt ? bien.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ bien.createdAt ? bien.createdAt|date('d/m/Y H:i:s') : '' }}</td>
+                <td>{{ bien.updatedAt ? bien.updatedAt|date('d/m/Y H:i:s') : '' }}</td>
                 <td>{{ bien.titre }}</td>
                 <td>{{ bien.type }}</td>
                 <td>
@@ -39,11 +46,11 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="10">no records found</td>
+                <td colspan="10">Aucun bien</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('bien_new') }}">Create new</a>
+    <a href="{{ path('bien_new') }}">Créer nouveau bien</a>
 {% endblock %}

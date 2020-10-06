@@ -4,9 +4,11 @@ namespace App\Entity;
 
 use App\Repository\BienRepository;
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 /**
  * @ORM\Entity(repositoryClass=BienRepository::class)
+ * @ORM\HasLifecycleCallbacks()
  */
 class Bien
 {
@@ -28,7 +30,7 @@ class Bien
     private $prix;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $photo;
 
@@ -43,7 +45,7 @@ class Bien
     private $created_at;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
     private $updated_at;
 
@@ -56,6 +58,13 @@ class Bien
      * @ORM\Column(type="string", length=12)
      */
     private $type;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="biens")
+     */
+    private $proprietaire;
+
+  
 
     public function getId(): ?int
     {
@@ -114,10 +123,12 @@ class Bien
     {
         return $this->created_at;
     }
-
-    public function setCreatedAt(\DateTimeInterface $created_at): self
+    /**
+    * @ORM\PrePersist
+    */
+    public function setCreatedAt(): self
     {
-        $this->created_at = $created_at;
+        $this->created_at =  new \DateTime('now', new \DateTimeZone('Europe/Paris'));
 
         return $this;
     }
@@ -126,10 +137,12 @@ class Bien
     {
         return $this->updated_at;
     }
-
-    public function setUpdatedAt(\DateTimeInterface $updated_at): self
+    /**
+    * @ORM\PreUpdate
+    */
+    public function setUpdatedAt(): self
     {
-        $this->updated_at = $updated_at;
+        $this->updated_at =  new \DateTime('now', new \DateTimeZone('Europe/Paris'));
 
         return $this;
     }
@@ -157,4 +170,25 @@ class Bien
 
         return $this;
     }
+
+    public function getProprietaire(): ?User
+    {
+        return $this->proprietaire;
+    }
+
+    public function setProprietaire(?User $proprietaire): self
+    {
+        $this->proprietaire = $proprietaire;
+
+        return $this;
+    }
+
+    
+
+    
 }
+
+
+
+
+
