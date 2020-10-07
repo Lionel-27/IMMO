@@ -21,9 +21,9 @@ class BienRepository extends ServiceEntityRepository
     }
 
 
- /**
-  * @return Query
-  */
+/**
+ * @return Query
+ */
     public function findPaginateBien()
     {   
         
@@ -31,32 +31,41 @@ class BienRepository extends ServiceEntityRepository
                     ->orderBy('a.created_at', 'ASC')
                     ->getQuery();
     }
-    // /**
-    //  * @return Bien[] Returns an array of Bien objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('b')
-            ->andWhere('b.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('b.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?Bien
+
+    public function findAllBienPaginateQuery(Search $search)
     {
-        return $this->createQueryBuilder('b')
-            ->andWhere('b.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
+         $query = $this->createQueryBuilder('a');
+       
+
+        if($search->getSearchTitre()) {
+            $query = $query->andWhere('a.title LIKE :searchbientitre')
+                           ->setParameter('searchbientitre','%'.addcslashes($search->SearchTitre(),'%_').'%');
+        }
+
+       
+        if($search->getCategorie()) {
+            $query = $query->andWhere('bien.categorie LIKE :searchbiencategorie')
+                           ->setParameter('searchbiencategorie','%'.addcslashes($search->getCategorie(),'%_').'%');
+        }
+
+        if($search->getType()) {
+            $query = $query->andWhere('bien.type LIKE :searchbientype')
+                           ->setParameter('searchbientype','%'.addcslashes($search->getType(),'%_').'%');
+        }
+
+         if($search->getprixMax()) {
+            $query = $query->andWhere('bien.prix <= :prixmax')
+                           ->setParameter('prixmax',$search->getprixMax());
+        }
+
+       
+
+
+        return $query->getQuery();
+        
+           
+
+    } 
+
 }
