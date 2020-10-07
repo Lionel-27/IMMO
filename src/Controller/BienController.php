@@ -4,11 +4,16 @@ namespace App\Controller;
 
 use App\Entity\Bien;
 use App\Form\BienType;
+//use App\Entity\Search;
+//use App\Form\SearchType;
 use App\Repository\BienRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+//pagination
+use Knp\Component\Pager\PaginatorInterface;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * @Route("/bien")
@@ -18,10 +23,24 @@ class BienController extends AbstractController
     /**
      * @Route("/", name="bien_index", methods={"GET"})
      */
-    public function index(BienRepository $bienRepository): Response
+    
+     public function index(BienRepository $bienRepository, Request $request,PaginatorInterface $paginator): Response
     {
+        //$search = new Search();
+        //$form = $this->createForm(SearchType::class, $search);
+        //$form->handleRequest($request);
+
+       $query = $bienRepository->findPaginateBien();
+        $requestedPage = $request->query->getInt('page', 1);
+
+        $biens = $paginator->paginate(
+            $query,
+            $requestedPage,
+            3
+        );
         return $this->render('bien/index.html.twig', [
-            'biens' => $bienRepository->findAll(),
+            'biens' => $biens,
+            //'form'=>$form->createView()
         ]);
     }
 

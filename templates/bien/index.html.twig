@@ -15,7 +15,7 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
+                <th>id</th>
                 <th>Photo</th>
                 <th>Description</th>
                 <th>Prix</th>
@@ -56,6 +56,12 @@
         {% endfor %}
         </tbody>
     </table>
-
+         <div class="row mb-4">
+        <div class="col-12 my-3 text-center">
+        <div class="d-inline-block">
+            {{ knp_pagination_render(biens) }}
+            </div>
+        </div>
+    </div>
      {# <a href="{{ path('bien_new') }}">Créer nouveau bien</a>   #} 
 {% endblock %}

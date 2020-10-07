@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Bien;
+use App\Entity\Search;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -19,6 +20,17 @@ class BienRepository extends ServiceEntityRepository
         parent::__construct($registry, Bien::class);
     }
 
+
+ /**
+  * @return Query
+  */
+    public function findPaginateBien()
+    {   
+        
+        return $this->createQueryBuilder('a')
+                    ->orderBy('a.created_at', 'ASC')
+                    ->getQuery();
+    }
     // /**
     //  * @return Bien[] Returns an array of Bien objects
     //  */

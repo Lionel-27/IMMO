@@ -33,11 +33,11 @@
             </tr>
             <tr>
                 <th>Last_login</th>
-                <td>{{ user.lastLogin ? user.lastLogin|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ user.lastLogin ? user.lastLogin|date('d/m/Y H:i:s') : '' }}</td>
             </tr>
             <tr>
                 <th>Password_requested_at</th>
-                <td>{{ user.passwordRequestedAt ? user.passwordRequestedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ user.passwordRequestedAt ? user.passwordRequestedAt|date('d/m/Y H:i:s') : '' }}</td>
             </tr>
             <tr>
                 <th>Roles</th>
@@ -73,11 +73,11 @@
             </tr>
             <tr>
                 <th>Created_at</th>
-                <td>{{ user.createdAt ? user.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ user.createdAt ? user.createdAt|date('d/m/Y H:i:s') : '' }}</td>
             </tr>
             <tr>
                 <th>Updated_at</th>
-                <td>{{ user.updatedAt ? user.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ user.updatedAt ? user.updatedAt|date('d/m/Y H:i:s') : '' }}</td>
             </tr>
         </tbody>
     </table>
