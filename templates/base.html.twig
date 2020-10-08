@@ -14,7 +14,10 @@
 	<!-- Material Design Bootstrap -->
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
 	<!-- Toastr -->
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet" />	
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet" />
+
+	<link href="{{asset('asset/style.css') }}" type="text/css" rel="stylesheet">
+
         {% endblock %}
         	<!--Navbar-->
 		<nav class="navbar navbar-expand-lg navbar-dark unique-color-dark">
@@ -63,7 +66,7 @@
 		<!--/.Navbar-->
     </head>
     <body>
-    	<div class="container p-5">
+    	<div class="container">
         	{% block body %}{% endblock %}
         </div>
 
