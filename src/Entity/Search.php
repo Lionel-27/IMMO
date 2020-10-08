@@ -31,6 +31,7 @@ class Search
      */
     private $prixMax;
 
+
     /**
      * @return string|null
      */
@@ -87,14 +88,20 @@ class Search
         return $this;
     }
 
+    /**
+     * @return integer|null
+     */
     public function getPrixMax(): ?int
     {
-        return $this->prix;
+        return $this->prixMax;
     }
-
+    /**
+     * @param integer|null $search
+     * @return Search
+     */
     public function setPrixMax(int $search): self
     {
-        $this->PrixMax = $prix;
+        $this->PrixMax = $search;
 
         return $this;
     }

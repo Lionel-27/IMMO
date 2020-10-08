@@ -11,7 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 //use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 //use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-//use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 
 class SearchType extends AbstractType
 {
@@ -23,7 +23,7 @@ class SearchType extends AbstractType
             ->add('categorie',ChoiceType::class,['placeholder'=>                          'Choisir une catégorie',
                 'choices'=>['Location'=>'Location','Vente'=>'Vente',],])
              ->add('type',ChoiceType::class,['placeholder'=>'Choisir un type','choices'=>['Maison'=>'Maison','Appartement'=>'Appartement',],])
-            ->add('prix',IntegerType::class)
+             ->add('prixMax',IntegerType::class)
         ;
     }
 
