@@ -20,11 +20,15 @@ class SearchType extends AbstractType
     {
         $builder
            
-            ->add('searchTitre',TextType::class,['label'=>'Recherche :'])
-            ->add('categorie',ChoiceType::class,['placeholder'=>                          'Choisir une catégorie',
-                'choices'=>['Location'=>'Location','Vente'=>'Vente',],])
-             ->add('type',ChoiceType::class,['placeholder'=>'Choisir un type','choices'=>['Maison'=>'Maison','Appartement'=>'Appartement',],])
-             ->add('prixMax',IntegerType::class)
+            ->add('searchTitre',TextType::class,[ 'required'=>false,
+                                                  'label'=>'Recherche :'])
+            ->add('categorie',ChoiceType::class,['required'=>false,
+                                                 'placeholder'=>'Choisir une catégorie',
+                                                 'choices'=>['Location'=>'Location','Vente'=>'Vente',],])
+             ->add('type',ChoiceType::class,['required'=>false,
+                                             'placeholder'=>'Choisir un type',
+                                             'choices'=>['Maison'=>'Maison','Appartement'=>'Appartement',],])
+             ->add('prixMax',IntegerType::class,[ 'required'=>false])
         ;
     }
 

@@ -64,7 +64,7 @@ class BienRepository extends ServiceEntityRepository
                            ->setParameter('searchbientype','%'.addcslashes($search->getType(),'%_').'%');
         }
 
-         if($search->getprixMax()) {
+         if($search->getPrixMax()) {
             $query = $query->andWhere('a.prix <= :prixMax')
                            ->setParameter('prixMax',$search->getprixMax());
         }

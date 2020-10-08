@@ -27,7 +27,7 @@ class Search
 
     /**
      * (type="integer")
-     * @var string|null
+     * @var integer|null
      */
     private $prixMax;
 
@@ -101,7 +101,7 @@ class Search
      */
     public function setPrixMax(int $search): self
     {
-        $this->PrixMax = $search;
+        $this->prixMax = $search;
 
         return $this;
     }
