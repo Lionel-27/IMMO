@@ -8,25 +8,25 @@ class Search
 
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * (type="string", length=255)
      * @var string|null
      */
     private $searchTitre;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * (type="string", length=255)
      * @var string|null
      */
     private $categorie;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * (type="string", length=255)
      * @var string|null
      */
     private $type;
 
     /**
-     * @ORM\Column(type="integer")
+     * (type="integer")
      * @var string|null
      */
     private $prixMax;

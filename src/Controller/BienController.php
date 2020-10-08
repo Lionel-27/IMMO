@@ -4,8 +4,8 @@ namespace App\Controller;
 
 use App\Entity\Bien;
 use App\Form\BienType;
-//use App\Entity\Search;
-//use App\Form\SearchType;
+use App\Entity\Search;
+use App\Form\SearchType;
 use App\Repository\BienRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;

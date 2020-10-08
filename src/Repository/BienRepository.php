@@ -37,25 +37,35 @@ class BienRepository extends ServiceEntityRepository
     {
          $query = $this->createQueryBuilder('a');
        
+         //if($search->getSearch()){
+            //$query = $query->innerJoin('bien.proprietaire','proprietaire')
+                           //->addSelect('proprietaire')
+                          // ->andWhere('bien.titre LIKE :searchbientitre')
+                           //->setParameter('searchbientitre','%'.addcslashes($search->getSearch(),'%_').'%')
+                          // ->orWhere('bien.description LIKE :searchbiendescription')
+                          // ->setParameter('searchbiendescription','%'.addcslashes($search->getSearch(),'%_').'%');
+                           //->orWhere('proprietaire.username LIKE :searchproprietaire')
+                           //->->setParameter('searchproprietaire','%'.addcslashes($search->getSearch(),'%_').'%');
+        // }
 
         if($search->getSearchTitre()) {
-            $query = $query->andWhere('a.title LIKE :searchbientitre')
-                           ->setParameter('searchbientitre','%'.addcslashes($search->SearchTitre(),'%_').'%');
+            $query = $query->andWhere('a.titre LIKE :searchbientitre')
+                           ->setParameter('searchbientitre','%'.addcslashes($search->getSearchTitre(),'%_').'%');
         }
 
        
         if($search->getCategorie()) {
-            $query = $query->andWhere('bien.categorie LIKE :searchbiencategorie')
+            $query = $query->andWhere('a.categorie LIKE :searchbiencategorie')
                            ->setParameter('searchbiencategorie','%'.addcslashes($search->getCategorie(),'%_').'%');
         }
 
         if($search->getType()) {
-            $query = $query->andWhere('bien.type LIKE :searchbientype')
+            $query = $query->andWhere('a.type LIKE :searchbientype')
                            ->setParameter('searchbientype','%'.addcslashes($search->getType(),'%_').'%');
         }
 
          if($search->getprixMax()) {
-            $query = $query->andWhere('bien.prix <= :prixMax')
+            $query = $query->andWhere('a.prix <= :prixMax')
                            ->setParameter('prixMax',$search->getprixMax());
         }
 

@@ -2,7 +2,8 @@
 
 namespace App\Form;
 
-//use App\Entity\Bien;
+use App\Entity\Bien;
+use App\Form\BienType;
 use App\Entity\Search;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;

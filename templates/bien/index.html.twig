@@ -8,10 +8,27 @@
     <h1 class="text-default">Liste des biens</h1>
          </div>
          <div class="col-sm-6 text-right">
-            
     <button class="btn btn-default"><a href="{{ path('bien_new') }}"><i class="fas fa-plus" aria-hidden="true"></i>Ajouter un bien</a></button>
             </div>
         </div>
+
+        <div class="row mb-4">
+        <div class="col-sm-8">
+          <form class="form-inline" >
+                {{ form_start(form) }}
+                    {{ form_label(form.searchTitre, null, { 'label': 'Votre recherche :', 'label_attr': {'class': 'text-default col-sm-3'} }) }}
+                    {{ form_widget(form.searchTitre) }}
+                    <button class="btn btn-md btn-default my-2 my-sm-0 ml-3" type="submit"><i class="fas fa-search"></i></button>
+                {{ form_end(form) }}
+          </form>
+        </div>
+        <div class="col-sm-4 text-right">
+            <div class="count text-default">
+             Nombre de biens:  <b>{{ biens.getTotalItemCount }}</b>
+            </div>
+        </div>
+    </div>  
+
     <table class="table">
         <thead>
             <tr>

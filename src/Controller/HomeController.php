@@ -10,6 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\BienRepository;
 use App\Form\SearchType;
 use App\Entity\Search;
+use App\Form\BienType;
 use App\Entity\Bien;
 //Include Paginator interface
 use Knp\Component\Pager\PaginatorInterface;
